@@ -32,23 +32,25 @@ league, team, player = st.tabs(["League", "Team", "Player"])
 with league:
     st.subheader("Gráficas de desempeño")
     """
-    Estas gráficas tienen un conjunto de métricas seleccionadas a partir de técnicas de inteligencia artificial.
-    Cada barra representa la fuerza relativa del jugador en cada una de las métricas.
-    La distancia que existe de la barra al centro indica el percentil comparado con la base de datos completa.
+    These graphs have a set of metrics selected from artificial intelligence techniques.
+    Each bar represents the relative strength of the player in each of the metrics.
+    The distance from the bar to the center indicates the percentile compared to the complete database.
 
-    La descripción completa la encontrarás en la entrada [Gráfica de desempeño de jugadores](https://www.nies.futbol/2023/07/grafica-de-desempeno-de-jugadores.html).
+    You will find the full description in the entry [Player performance
+    graph](https://www.nies.futbol/2023/07/grafica-de-desempeno-de-jugadores.html).
     """
     st.plotly_chart(fig)
 
 with team:
     st.subheader("Gráficas de consistencia")
     """
-    En la figura de abajo mostramos un mapa de calor.
-    En los renglones podemos ver a los jugadores del equipo (incluyendo a los sustitutos).
-    Las columnas corresponden a los partidos disputados.
-    Así, el color de cada cuadro representa los minutos disputados en un partido por cada jugador.
+    In the figure below, we show a heat map.
+    We can see the team's players (including the substitutes) in the lines.
+    The columns correspond to the matches played.
+    Thus, the color of each box represents the minutes played in a match by each player.
 
-    La descripción completa la encontrarás en la entrada [Consistencia en las alineaciones](https://www.nies.futbol/2023/08/consistencia-en-las-alineaciones-la.html).
+    You will find the complete description in the entry [Consistency in
+    lineups](https://www.nies.futbol/2023/08/consistencia-en-las-alineaciones-la.html).
     """
     teams = ["Cimarrones", "Cancún", "Mineros de Zacatecas"]
     colours = {"Cimarrones": "oranges", "Cancún": "blues", "Mineros de Zacatecas": "reds"}
@@ -84,11 +86,12 @@ with team:
 with player:
     st.subheader("Gráficas de desempeño")
     """
-    Estas gráficas tienen un conjunto de métricas seleccionadas a partir de técnicas de inteligencia artificial.
-    Cada barra representa la fuerza relativa del jugador en cada una de las métricas.
-    La distancia que existe de la barra al centro indica el percentil comparado con la base de datos completa.
+    These graphs have a set of metrics selected from artificial intelligence techniques.
+    Each bar represents the relative strength of the player in each of the metrics.
+    The distance from the bar to the center indicates the percentile compared to the complete database.
 
-    La descripción completa la encontrarás en la entrada [Gráfica de desempeño de jugadores](https://www.nies.futbol/2023/07/grafica-de-desempeno-de-jugadores.html).
+    You will find the full description in the entry [Player performance
+    graph](https://www.nies.futbol/2023/07/grafica-de-desempeno-de-jugadores.html).
     """
     fig.add_layout_image(
         dict(
