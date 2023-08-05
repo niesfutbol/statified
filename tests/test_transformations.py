@@ -1,4 +1,4 @@
-import streamlit_nies as dt
+import statified_nies as dt
 
 
 def test_add_offset():

@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: nepolin/streamlit_nies:latest
+    image: nepolin/statified_nies:latest
     command: bash
     volumes:
       - $PWD:/workdir

@@ -13,7 +13,7 @@ all: check coverage mutants
 		setup \
 		tests
 
-module = streamlit_nies
+module = statified_nies
 codecov_token = 6c56bccb-1758-4ed9-8161-97c845591c26
 
 define lint
