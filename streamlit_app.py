@@ -10,22 +10,16 @@ tilt = pd.read_csv("static/xG_build-up_ppda_tilt_135.csv")
 
 # -------- plot league indices --------
 dropdown = alt.binding_select(
-    options=["build_up_disruption","ppda","tilt"],
-    name='X-axis column '
+    options=["build_up_disruption", "ppda", "tilt"], name="X-axis column "
 )
-xcol_param = alt.param(
-    value="tilt",
-    bind=dropdown
-)
+xcol_param = alt.param(value="tilt", bind=dropdown)
 
-tilt_plot = alt.Chart(tilt).mark_circle().encode(
-    x=alt.X('x:Q').title(''),
-    y='xG:Q',
-    color='Origin:N'
-).transform_calculate(
-    x=f'datum[{xcol_param.name}]'
-).add_params(
-    xcol_param
+tilt_plot = (
+    alt.Chart(tilt)
+    .mark_circle()
+    .encode(x=alt.X("x:Q").title(""), y="xG:Q", color="Origin:N")
+    .transform_calculate(x=f"datum[{xcol_param.name}]")
+    .add_params(xcol_param)
 )
 # ------------- game start ------------
 radar_player = "J. Musiala"
