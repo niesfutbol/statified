@@ -25,6 +25,14 @@ tilt_plot = (
     .transform_calculate(x=f"datum[{xcol_param.name}]")
     .add_params(xcol_param)
 )
+img = alt.Chart({
+    "values": [{"url": "https://raw.githubusercontent.com/niesfutbol/statified/develop/static/logo_nies.png"}]
+}).mark_image(opacity=0.5).encode(
+    x=alt.value(270), x2=alt.value(300),  # pixels from left
+    y=alt.value(320), y2=alt.value(350),  # pixels from top
+    url="url:N"
+)
+new_plot = alt.layer(tilt_plot, img)
 # ------------- game start ------------
 radar_player = "J. Musiala"
 player_t = larga[larga.Player == radar_player]
@@ -60,7 +68,7 @@ with league:
 
     You will find the full description in the entry [Pressure indices: PPDA and Build-Up Disruption](https://www.nies.futbol/2023/04/indices-de-presion-ppda-y-build-up.html).
     """
-    st.altair_chart(tilt_plot)
+    st.altair_chart(new_plot)
 
 with team:
     st.subheader("Gráficas de consistencia")
