@@ -30,14 +30,16 @@ fig.update_layout(
 league, team, player = st.tabs(["League", "Team", "Player"])
 
 with league:
-    st.subheader("Gráficas de desempeño")
+    st.subheader("Pressure indices")
     """
-    These graphs have a set of metrics selected from artificial intelligence techniques.
-    Each bar represents the relative strength of the player in each of the metrics.
-    The distance from the bar to the center indicates the percentile compared to the complete database.
+    The PPDA is a metric that we use to evaluate the defensive pressure of a team on the opposing
+    team. The PPDA measures the number of passes the defending team allows before it takes defensive
+    action. These defensive actions can be a steal attempt, an interception, or a foul.
 
-    You will find the full description in the entry [Player performance
-    graph](https://www.nies.futbol/2023/07/grafica-de-desempeno-de-jugadores.html).
+    BDP (Build-Up Disruption) is a metric to measure a team's ability to disrupt the opposing team's
+    build-up game. The name refers to the interruption in the construction phase of the play.
+
+    You will find the full description in the entry [Pressure indices: PPDA and Build-Up Disruption](https://www.nies.futbol/2023/04/indices-de-presion-ppda-y-build-up.html).
     """
     st.plotly_chart(fig)
 
