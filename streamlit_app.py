@@ -17,7 +17,11 @@ xcol_param = alt.param(value="tilt", bind=dropdown)
 tilt_plot = (
     alt.Chart(tilt_ppda)
     .mark_circle()
-    .encode(x=alt.X("x:Q").title(""), y="xG:Q", tooltip=['team', 'xG', 'tilt', 'build_up_disruption','ppd'])
+    .encode(
+        x=alt.X("x:Q").title(""),
+        y="xG:Q",
+        tooltip=["team", "xG", "tilt", "build_up_disruption", "ppda"],
+    )
     .transform_calculate(x=f"datum[{xcol_param.name}]")
     .add_params(xcol_param)
 )
