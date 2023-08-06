@@ -41,7 +41,7 @@ with league:
 
     You will find the full description in the entry [Pressure indices: PPDA and Build-Up Disruption](https://www.nies.futbol/2023/04/indices-de-presion-ppda-y-build-up.html).
     """
-    st.plotly_chart(fig)
+    st.image("static/serie_a_indices.png")
 
 with team:
     st.subheader("Gráficas de consistencia")
