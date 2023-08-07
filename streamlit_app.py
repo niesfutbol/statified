@@ -69,8 +69,14 @@ fig.update_layout(
 league, team, player = st.tabs(["League", "Team", "Player"])
 
 with league:
-    st.subheader("Pressure indices")
+    st.subheader("Tilt and pressure indices")
     """
+    The tilt tells us about the possession of a team's ball in an area where it can do damage, the last third of the pitch.
+    The definition of tilt is the percentage of total passes that a team made in the final third of the field.
+    For example, suppose that there were ten passes in the last third of the pitch in a game.
+    Let's say the home team made seven passes, and the away team made 3.
+    So the home team's tilt would be 70%, and the away team's 30%.
+
     The PPDA is a metric that we use to evaluate the defensive pressure of a team on the opposing
     team. The PPDA measures the number of passes the defending team allows before it takes defensive
     action. These defensive actions can be a steal attempt, an interception, or a foul.
@@ -78,7 +84,8 @@ with league:
     BDP (Build-Up Disruption) is a metric to measure a team's ability to disrupt the opposing team's
     build-up game. The name refers to the interruption in the construction phase of the play.
 
-    You will find the full description in the entry [Pressure indices: PPDA and Build-Up Disruption](https://www.nies.futbol/2023/04/indices-de-presion-ppda-y-build-up.html).
+    You will find the full description in the blog notes [The inclination and pressure for Napoles](https://www.nies.futbol/2023/05/la-inclinacion-y-la-presion-para-el.html)
+    and [Pressure indices: PPDA and Build-Up Disruption](https://www.nies.futbol/2023/04/indices-de-presion-ppda-y-build-up.html).
     """
     st.altair_chart(new_plot)
 
