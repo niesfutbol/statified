@@ -29,7 +29,18 @@ weight_plot = (
         )
     )
 )
-
+for x, y, id_t in zip(weighted.weighted_attack, weighted.weighted_deffense, weighted.team_id):
+    weight_plot.add_layout_image(
+        x=x,
+        y=y,
+        source=Image.open(f"static/logo_{id_t}.png"),
+        xref="x",
+        yref="y",
+        sizex=2,
+        sizey=2,
+        xanchor="center",
+        yanchor="middle",
+    )
 # -------- plot league indices --------
 dropdown = alt.binding_select(
     options=["build_up_disruption", "ppda", "tilt"], name="X-axis column "
