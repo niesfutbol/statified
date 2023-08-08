@@ -15,15 +15,23 @@ weight_plot = (
         weighted,
         x="weighted_attack",
         y="weighted_deffense",
+        labels={
+            "weighted_attack": "Weighted xG and G For",
+            "weighted_deffense": "Weighted xG and G Against",
+        },
     )
     .update_layout(yaxis=dict(autorange="reversed"))
+    .update_yaxes(
+        scaleanchor="x",
+        scaleratio=1,
+    )
     .add_layout_image(
         dict(
             source=Image.open("static/logo_nies.png"),
             xref="paper",
             yref="paper",
-            x=0.0,
-            y=0.0,
+            x=0.9,
+            y=0.1,
             sizex=0.2,
             sizey=0.2,
         )
