@@ -8,6 +8,13 @@ import streamlit as st
 larga = pd.read_csv("static/larga_player.csv")
 data = pd.read_csv("static/played_minutes.csv")
 tilt_ppda = pd.read_csv("static/xG_build-up_ppda_tilt_135.csv")
+weighted = pd.read_csv("static/weighted_g_and_xg.csv")
+# ---------- plot weight --------------
+weight_plot= px.scatter(
+    weighted,
+    x="weighted_attack",
+    y="weighted_deffense",
+)
 
 # -------- plot league indices --------
 dropdown = alt.binding_select(
@@ -89,6 +96,7 @@ with league:
     and [Pressure indices: PPDA and Build-Up Disruption](https://www.nies.futbol/2023/04/indices-de-presion-ppda-y-build-up.html).
     """
     st.altair_chart(new_plot)
+    st.plotly_chart(weight_plot)
 
 with team:
     st.subheader("Gráficas de consistencia")
