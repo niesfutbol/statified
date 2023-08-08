@@ -36,8 +36,8 @@ for x, y, id_t in zip(weighted.weighted_attack, weighted.weighted_deffense, weig
         source=Image.open(f"static/logo_{id_t}.png"),
         xref="x",
         yref="y",
-        sizex=2,
-        sizey=2,
+        sizex=0.5,
+        sizey=0.5,
         xanchor="center",
         yanchor="middle",
     )
