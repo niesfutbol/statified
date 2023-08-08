@@ -10,10 +10,24 @@ data = pd.read_csv("static/played_minutes.csv")
 tilt_ppda = pd.read_csv("static/xG_build-up_ppda_tilt_135.csv")
 weighted = pd.read_csv("static/weighted_g_and_xg.csv")
 # ---------- plot weight --------------
-weight_plot= px.scatter(
-    weighted,
-    x="weighted_attack",
-    y="weighted_deffense",
+weight_plot = (
+    px.scatter(
+        weighted,
+        x="weighted_attack",
+        y="weighted_deffense",
+    )
+    .update_layout(yaxis=dict(autorange="reversed"))
+    .add_layout_image(
+        dict(
+            source=Image.open("static/logo_nies.png"),
+            xref="paper",
+            yref="paper",
+            x=0.05,
+            y=0.05,
+            sizex=0.2,
+            sizey=0.2,
+        )
+    )
 )
 
 # -------- plot league indices --------
