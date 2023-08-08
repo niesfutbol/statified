@@ -24,10 +24,6 @@ weight_plot = (
         },
     )
     .update_layout(yaxis=dict(autorange="reversed"), xaxis_range=[min_x - diff, max_x + diff])
-    .update_yaxes(
-        scaleanchor="x",
-        scaleratio=1,
-    )
     .add_layout_image(
         dict(
             source=Image.open("static/logo_nies.png"),
