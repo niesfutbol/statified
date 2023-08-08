@@ -12,7 +12,7 @@ weighted = pd.read_csv("static/weighted_g_and_xg.csv")
 # ---------- plot weight --------------
 min_x = weighted.weighted_deffense.min()
 max_x = weighted.weighted_deffense.max()
-diff = (max_x - min_x) / 20
+diff = (max_x - min_x) / 5
 weight_plot = (
     px.scatter(
         weighted,
