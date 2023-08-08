@@ -22,8 +22,8 @@ weight_plot = (
             source=Image.open("static/logo_nies.png"),
             xref="paper",
             yref="paper",
-            x=0.05,
-            y=0.05,
+            x=0.005,
+            y=0.005,
             sizex=0.2,
             sizey=0.2,
         )
@@ -36,8 +36,8 @@ for x, y, id_t in zip(weighted.weighted_attack, weighted.weighted_deffense, weig
         source=Image.open(f"static/logo_{id_t}.png"),
         xref="x",
         yref="y",
-        sizex=0.5,
-        sizey=0.5,
+        sizex=0.07,
+        sizey=0.07,
         xanchor="center",
         yanchor="middle",
     )
