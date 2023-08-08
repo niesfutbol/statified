@@ -30,8 +30,8 @@ weight_plot = (
             source=Image.open("static/logo_nies.png"),
             xref="paper",
             yref="paper",
-            x=0.9,
-            y=0.1,
+            x=0.7,
+            y=0.2,
             sizex=0.2,
             sizey=0.2,
         )
