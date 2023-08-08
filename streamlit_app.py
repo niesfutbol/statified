@@ -10,6 +10,9 @@ data = pd.read_csv("static/played_minutes.csv")
 tilt_ppda = pd.read_csv("static/xG_build-up_ppda_tilt_135.csv")
 weighted = pd.read_csv("static/weighted_g_and_xg.csv")
 # ---------- plot weight --------------
+min_x = weighted.weighted_deffense.min()
+max_x = weighted.weighted_deffense.max()
+diff = (max_x - min_x) / 20
 weight_plot = (
     px.scatter(
         weighted,
@@ -20,7 +23,7 @@ weight_plot = (
             "weighted_deffense": "Weighted xG and G Against",
         },
     )
-    .update_layout(yaxis=dict(autorange="reversed"))
+    .update_layout(yaxis=dict(autorange="reversed"), xaxis_range=[min_x - diff, max_x + diff])
     .update_yaxes(
         scaleanchor="x",
         scaleratio=1,
