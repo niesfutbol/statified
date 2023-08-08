@@ -1,5 +1,6 @@
 import altair as alt
 import pandas as pd
+from PIL import Image
 import plotly.express as px
 import streamlit as st
 
@@ -155,7 +156,7 @@ with player:
         )
     ).add_layout_image(
         dict(
-            source="https://raw.githubusercontent.com/niesfutbol/statified/develop/static/logo_nies.png",
+            source=Image.open("static/logo_nies.png"),
             xref="paper",
             yref="paper",
             x=0.05,
