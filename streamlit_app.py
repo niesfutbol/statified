@@ -141,7 +141,7 @@ with team:
     You will find the complete description in the entry [Consistency in
     lineups](https://www.nies.futbol/2023/08/consistencia-en-las-alineaciones-la.html).
     """
-    teams = data.team.to_list()
+    teams = data.team.unique().tolist()
     colours = {"Cimarrones": "oranges", "Cancún": "blues", "Mineros de Zacatecas": "reds"}
     team = st.selectbox("Selecciona un equipo:", teams)
     # color = colours[team]
