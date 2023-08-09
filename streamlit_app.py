@@ -141,7 +141,7 @@ with team:
     You will find the complete description in the entry [Consistency in
     lineups](https://www.nies.futbol/2023/08/consistencia-en-las-alineaciones-la.html).
     """
-    teams = ["Cimarrones", "Cancún", "Mineros de Zacatecas"]
+    teams = data.team.to_list()
     colours = {"Cimarrones": "oranges", "Cancún": "blues", "Mineros de Zacatecas": "reds"}
     team = st.selectbox("Selecciona un equipo:", teams)
     color = colours[team]
@@ -160,7 +160,7 @@ with team:
                 sort=alt.EncodingSortField(field="minutes", op="sum", order="descending"),
                 title="Player",
             ),
-            alt.Color("minutes:Q", scale=alt.Scale(scheme=color)).title("Minutes"),
+            alt.Color("minutes:Q", scale=alt.Scale(scheme="blues")).title("Minutes"),
             tooltip=[
                 alt.Tooltip("match:N", title="Match"),
                 alt.Tooltip("player:N", title="Player"),
