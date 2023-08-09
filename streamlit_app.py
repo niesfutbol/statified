@@ -142,9 +142,9 @@ with team:
     lineups](https://www.nies.futbol/2023/08/consistencia-en-las-alineaciones-la.html).
     """
     teams = data.team.unique().tolist()
-    colours = {"Cimarrones": "oranges", "Cancún": "blues", "Mineros de Zacatecas": "reds"}
+    colours = {t:c for t,c in zip(weighted.names, weighted.colours)}
     team = st.selectbox("Selecciona un equipo:", teams)
-    # color = colours[team]
+    color = colours[team]
     played_minutes = data[data.team == team]
 
     # Crear el gráfico de Altair
@@ -160,7 +160,7 @@ with team:
                 sort=alt.EncodingSortField(field="minutes", op="sum", order="descending"),
                 title="Player",
             ),
-            alt.Color("minutes:Q", scale=alt.Scale(scheme="blues")).title("Minutes"),
+            alt.Color("minutes:Q", scale=alt.Scale(scheme=color)).title("Minutes"),
             tooltip=[
                 alt.Tooltip("match:N", title="Match"),
                 alt.Tooltip("player:N", title="Player"),
