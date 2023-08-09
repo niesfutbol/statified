@@ -144,7 +144,7 @@ with team:
     teams = data.team.to_list()
     colours = {"Cimarrones": "oranges", "Cancún": "blues", "Mineros de Zacatecas": "reds"}
     team = st.selectbox("Selecciona un equipo:", teams)
-    color = colours[team]
+    # color = colours[team]
     played_minutes = data[data.team == team]
 
     # Crear el gráfico de Altair
