@@ -137,7 +137,7 @@ with league:
     """
 
 with team:
-    st.subheader("Gráficas de consistencia")
+    st.subheader("Consistency in lineups")
     """
     In the figure below, we show a heat map.
     We can see the team's players (including the substitutes) in the lines.
@@ -148,7 +148,7 @@ with team:
     lineups](https://www.nies.futbol/2023/08/consistencia-en-las-alineaciones-la.html).
     """
     teams = data.team.unique().tolist()
-    colours = {t:c for t,c in zip(weighted.names, weighted.colours)}
+    colours = {t: c for t, c in zip(weighted.names, weighted.colours)}
     team = st.selectbox("Selecciona un equipo:", teams)
     color = colours[team]
     played_minutes = data[data.team == team]
