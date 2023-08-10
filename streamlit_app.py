@@ -130,6 +130,7 @@ with league:
     st.altair_chart(new_plot)
     st.plotly_chart(weight_plot)
 
+    st.subheader("Repositories involved")
     """
         - The repo to calculate the pressure indeces is [pressure_index](https://github.com/niesfutbol/pressure_index) (R y Python)
         - The repo to calculate the weighted G and xG is [calculator-trs](https://github.com/nepito/calculator-trs) (R)
@@ -177,6 +178,7 @@ with team:
     )
     st.altair_chart(chart)
 
+    st.subheader("Repositories involved")
     """
         - The repo to download data about consistency in lineups is [football](https://gitlab.com/nepito/football) (Python)
         - The repo to calculate consistency in lineups is [consistent_lineup_setup](https://github.com/niesfutbol/consistent_lineup_setup) (Python)
@@ -215,6 +217,7 @@ with player:
         )
     )
     st.plotly_chart(fig)
+    st.subheader("Repositories involved")
     """
         - The repo to calculate the player's cluster is [cluster_players](https://github.com/niesfutbol/cluster_players) (R)
     """
