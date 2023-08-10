@@ -130,6 +130,11 @@ with league:
     st.altair_chart(new_plot)
     st.plotly_chart(weight_plot)
 
+    """
+        - The repo to calculate the pressure indeces is [pressure_index](https://github.com/niesfutbol/pressure_index) (R y Python)
+        - The repo to calculate the weighted G and xG is [calculator-trs](https://github.com/nepito/calculator-trs) (R)
+    """
+
 with team:
     st.subheader("Gráficas de consistencia")
     """
