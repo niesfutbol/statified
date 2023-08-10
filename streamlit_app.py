@@ -148,6 +148,7 @@ with team:
     lineups](https://www.nies.futbol/2023/08/consistencia-en-las-alineaciones-la.html).
     """
     teams = data.team.unique().tolist()
+    teams.sort()
     colours = {t: c for t, c in zip(weighted.names, weighted.colours)}
     team = st.selectbox("Select a team:", teams)
     color = colours[team]
