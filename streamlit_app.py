@@ -177,6 +177,10 @@ with team:
     )
     st.altair_chart(chart)
 
+    """
+        - The repo to download data about consistency in lineups is [football](https://gitlab.com/nepito/football) (Python)
+        - The repo to calculate consistency in lineups is [consistent_lineup_setup](https://github.com/niesfutbol/consistent_lineup_setup) (Python)
+    """
 with player:
     st.subheader("Gráficas de desempeño")
     """
@@ -211,6 +215,9 @@ with player:
         )
     )
     st.plotly_chart(fig)
+    """
+        - The repo to calculate the player's cluster is [cluster_players](https://github.com/niesfutbol/cluster_players) (R)
+    """
 
 
 st.markdown("Made with 💖 by [nies.futbol](https://nies.futbol)")
