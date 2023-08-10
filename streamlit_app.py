@@ -50,7 +50,7 @@ for x, y, id_t in zip(weighted.weighted_attack, weighted.weighted_deffense, weig
     )
 # -------- plot league indices --------
 dropdown = alt.binding_select(
-    options=["build_up_disruption", "ppda", "tilt"], name="X-axis column "
+    options=["build_up_disruption", "ppda", "tilt"], name="Pressure indices "
 )
 xcol_param = alt.param(value="tilt", bind=dropdown)
 
