@@ -93,7 +93,7 @@ fig = px.bar_polar(
     r="deciles",
     theta="variable",
     color="type_variable",
-    title=f"Gráfica Radial de Barras Interactiva de {radar_player}",
+    title=f"{radar_player}",
 )
 
 fig.update_traces(showlegend=False)
@@ -149,7 +149,7 @@ with team:
     """
     teams = data.team.unique().tolist()
     colours = {t: c for t, c in zip(weighted.names, weighted.colours)}
-    team = st.selectbox("Selecciona un equipo:", teams)
+    team = st.selectbox("Select a team:", teams)
     color = colours[team]
     played_minutes = data[data.team == team]
 
@@ -184,7 +184,7 @@ with team:
         - The repo to calculate consistency in lineups is [consistent_lineup_setup](https://github.com/niesfutbol/consistent_lineup_setup) (Python)
     """
 with player:
-    st.subheader("Gráficas de desempeño")
+    st.subheader("Player performance graph")
     """
     These graphs have a set of metrics selected from artificial intelligence techniques.
     Each bar represents the relative strength of the player in each of the metrics.
