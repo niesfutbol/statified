@@ -235,8 +235,8 @@ with player:
             source=Image.open(f"static/logo_{team_id}.png"),
             xref="paper",
             yref="paper",
-            x=0.8,
-            y=1.05,
+            x=0.9,
+            y=0.85,
             sizex=0.2,
             sizey=0.2,
         )
