@@ -98,6 +98,13 @@ img = (
 )
 new_plot = alt.layer(tilt_plot, img)
 
+"""
+This is a hierarchical review.
+First, we select the league of our interest.
+Once the league is configured, in the second tab, we can see the teams in that league.
+Once we choose the team, we can see the members of that team in the last tab.
+"""
+
 league, team, player = st.tabs(["League", "Team", "Player"])
 
 with league:
@@ -200,9 +207,10 @@ with player:
         title=f"{radar_player}, {team} ({minutes_played} minutes played)",
     )
 
-    fig.update_traces(showlegend=False)
+    fig.update_traces(showlegend=True)
     fig.update_polars(radialaxis_showticklabels=True)
     fig.update_layout(
+        legend_title_text='Game phase',
         polar_radialaxis_ticksuffix="",
         polar_angularaxis_rotation=90,
         polar_angularaxis_direction="clockwise",
