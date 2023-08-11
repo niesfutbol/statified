@@ -232,7 +232,7 @@ with player:
         )
     ).add_layout_image(
         dict(
-            source=Image.open("static/logo_{team_id}.png"),
+            source=Image.open(f"static/logo_{team_id}.png"),
             xref="paper",
             yref="paper",
             x=0.8,
