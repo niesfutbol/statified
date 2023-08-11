@@ -189,7 +189,7 @@ with player:
 
     radar_player = st.selectbox(f"Select a {team}'s player:", wy_players)
     player_t = larga[larga.Player == radar_player]
-    minutes_played = mp[mp.Player == player]["Minutes played"].to_list()[0]
+    minutes_played = mp[mp.Player == radar_player]["Minutes played"].to_list()[0]
     team_id = weighted[weighted.name == team]["team_id"].to_list()[0]
     fig = px.bar_polar(
         player_t,
