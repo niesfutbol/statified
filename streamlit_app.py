@@ -59,6 +59,8 @@ for x, y, id_t in zip(weighted.weighted_attack, weighted.weighted_deffense, weig
         xanchor="center",
         yanchor="middle",
     )
+    weight_plot.layout.xaxis.fixedrange = True
+    weight_plot.layout.yaxis.fixedrange = True
 # -------- plot league indices --------
 dropdown = alt.binding_select(
     options=["build_up_disruption", "ppda", "tilt"], name="Pressure indices "
