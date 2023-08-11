@@ -236,7 +236,7 @@ with player:
             xref="paper",
             yref="paper",
             x=0.9,
-            y=0.05,
+            y=0.07,
             sizex=0.2,
             sizey=0.2,
             xanchor="right",
