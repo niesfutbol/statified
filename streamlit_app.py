@@ -240,7 +240,6 @@ with player:
             sizex=0.2,
             sizey=0.2,
             xanchor="right",
-            yanchor="bottom",
         )
     )
     st.plotly_chart(fig)
