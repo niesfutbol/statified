@@ -67,7 +67,7 @@ xcol_param = alt.param(value="tilt", bind=dropdown)
 
 tilt_plot = (
     alt.Chart(tilt_ppda)
-    .mark_circle()
+    .mark_point()
     .encode(
         x=alt.X("x:Q").title(""),
         y="xG:Q",
@@ -92,7 +92,6 @@ img = (
         x2=alt.value(300),  # pixels from left
         y=alt.value(320),
         y2=alt.value(350),  # pixels from top
-        url="url:N",
     )
 )
 new_plot = alt.layer(tilt_plot, img)
