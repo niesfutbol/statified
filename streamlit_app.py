@@ -9,6 +9,7 @@ larga = pd.read_csv("static/larga_player.csv")
 data = pd.read_csv("static/played_minutes.csv")
 tilt_ppda = pd.read_csv("static/xG_build-up_ppda_tilt_135.csv")
 weighted = pd.read_csv("static/weighted_g_and_xg.csv")
+mp = pd.read_csv("static/minutes_played_23.csv")
 
 
 def list_of_players_in_ws_and_as(longer, played_minutes):
@@ -188,12 +189,13 @@ with player:
 
     radar_player = st.selectbox(f"Select a {team}'s player:", wy_players)
     player_t = larga[larga.Player == radar_player]
+    minutes_played = mp[mp.Player == player]['Minutes played'].to_list()[0]
     fig = px.bar_polar(
         player_t,
         r="deciles",
         theta="variable",
         color="type_variable",
-        title=f"{radar_player}",
+        title=f"{radar_player}, {team} ({minutes_played} minutes played)",
     )
 
     fig.update_traces(showlegend=False)
