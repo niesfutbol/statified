@@ -6,3 +6,11 @@ src="https://raw.githubusercontent.com/niesfutbol/statified_nies/develop/static/
 # App to show some analyses
 
 ## Step to use
+### Local app
+``` sh
+docker-compose up app
+```
+### Develop Enviroment
+``` sh
+docker-compose run nies
+```

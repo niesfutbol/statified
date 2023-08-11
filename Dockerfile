@@ -9,3 +9,6 @@ RUN pip install --upgrade pip && pip install \
     pylint \
     pytest \
     pytest-cov
+RUN pip3 install -r requirements.txt
+
+EXPOSE 8501
