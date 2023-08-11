@@ -9,6 +9,16 @@ larga = pd.read_csv("static/larga_player.csv")
 data = pd.read_csv("static/played_minutes.csv")
 tilt_ppda = pd.read_csv("static/xG_build-up_ppda_tilt_135.csv")
 weighted = pd.read_csv("static/weighted_g_and_xg.csv")
+
+
+def list_of_players_in_ws_and_as(longer, played_minutes):
+    return [
+        jugador
+        for jugador in longer.Player.unique().tolist()
+        if jugador in played_minutes.player.to_list()
+    ]
+
+
 # ---------- plot weight --------------
 min_x = weighted.weighted_deffense.min()
 max_x = weighted.weighted_deffense.max()
@@ -85,26 +95,6 @@ img = (
     )
 )
 new_plot = alt.layer(tilt_plot, img)
-# ------------- game start ------------
-radar_player = "J. Musiala"
-player_t = larga[larga.Player == radar_player]
-fig = px.bar_polar(
-    player_t,
-    r="deciles",
-    theta="variable",
-    color="type_variable",
-    title=f"{radar_player}",
-)
-
-fig.update_traces(showlegend=False)
-fig.update_polars(radialaxis_showticklabels=True)
-fig.update_layout(
-    polar_radialaxis_ticksuffix="",
-    polar_angularaxis_rotation=90,
-    polar_angularaxis_direction="clockwise",
-    polar_radialaxis_dtick=10,
-    polar_hole=0.10,
-)
 
 league, team, player = st.tabs(["League", "Team", "Player"])
 
@@ -153,7 +143,7 @@ with team:
     team = st.selectbox("Select a team:", teams)
     color = colours[team]
     played_minutes = data[data.team == team]
-
+    wy_players = list_of_players_in_ws_and_as(larga, played_minutes)
     # Crear el gráfico de Altair
     chart = (
         alt.Chart(played_minutes, title=f"Minutes Played by Player and Match: \n{team}")
@@ -194,6 +184,27 @@ with player:
     You will find the full description in the entry [Player performance
     graph](https://www.nies.futbol/2023/07/grafica-de-desempeno-de-jugadores.html).
     """
+    # ------------- game start ------------
+
+    radar_player = st.selectbox("Select a player:", wy_players)
+    player_t = larga[larga.Player == radar_player]
+    fig = px.bar_polar(
+        player_t,
+        r="deciles",
+        theta="variable",
+        color="type_variable",
+        title=f"{radar_player}",
+    )
+
+    fig.update_traces(showlegend=False)
+    fig.update_polars(radialaxis_showticklabels=True)
+    fig.update_layout(
+        polar_radialaxis_ticksuffix="",
+        polar_angularaxis_rotation=90,
+        polar_angularaxis_direction="clockwise",
+        polar_radialaxis_dtick=10,
+        polar_hole=0.10,
+    )
     fig.add_layout_image(
         dict(
             source="https://raw.githubusercontent.com/niesfutbol/statified/develop/static/logo_serie_a.png",
