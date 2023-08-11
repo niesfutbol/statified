@@ -186,7 +186,7 @@ with player:
     """
     # ------------- game start ------------
 
-    radar_player = st.selectbox("Select a player:", wy_players)
+    radar_player = st.selectbox(f"Select a {team}'s player:", wy_players)
     player_t = larga[larga.Player == radar_player]
     fig = px.bar_polar(
         player_t,
