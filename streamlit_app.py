@@ -190,6 +190,7 @@ with player:
     radar_player = st.selectbox(f"Select a {team}'s player:", wy_players)
     player_t = larga[larga.Player == radar_player]
     minutes_played = mp[mp.Player == player]["Minutes played"].to_list()[0]
+    team_id = weighted[weighted.name == team]["team_id"].to_list()[0]
     fig = px.bar_polar(
         player_t,
         r="deciles",
@@ -226,6 +227,16 @@ with player:
             yref="paper",
             x=0.05,
             y=0.05,
+            sizex=0.2,
+            sizey=0.2,
+        )
+    ).add_layout_image(
+        dict(
+            source=Image.open("static/logo_{team_id}.png"),
+            xref="paper",
+            yref="paper",
+            x=0.8,
+            y=1.05,
             sizex=0.2,
             sizey=0.2,
         )
