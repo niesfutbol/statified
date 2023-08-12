@@ -97,7 +97,7 @@ img = (
     )
 )
 new_plot = alt.layer(tilt_plot, img)
-st.set_page_config(layout="wide")
+# st.set_page_config(layout="wide")
 """
 This is a hierarchical review.
 First, we select the league of our interest.
@@ -210,7 +210,7 @@ with player:
     fig.update_traces(showlegend=True)
     fig.update_polars(radialaxis_showticklabels=True)
     fig.update_layout(
-        legend_title_text='Game phase',
+        legend_title_text="Game phase",
         polar_radialaxis_ticksuffix="",
         polar_angularaxis_rotation=90,
         polar_angularaxis_direction="clockwise",
