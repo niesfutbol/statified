@@ -6,7 +6,6 @@ import streamlit as st
 
 
 larga = pd.read_csv("static/larga_player.csv")
-data = pd.read_csv("static/played_minutes.csv")
 mp = pd.read_csv("static/minutes_played_23.csv")
 
 
@@ -148,6 +147,7 @@ with team:
     You will find the complete description in the entry [Consistency in
     lineups](https://www.nies.futbol/2023/08/consistencia-en-las-alineaciones-la.html).
     """
+    data = pd.read_csv(f"static/played_minutes_{league_id_from_name[league_name]}.csv")
     teams = data.team.unique().tolist()
     teams.sort()
     colours = {t: c for t, c in zip(weighted.names, weighted.colours)}
@@ -196,7 +196,7 @@ with player:
     graph](https://www.nies.futbol/2023/07/grafica-de-desempeno-de-jugadores.html).
     """
     # ------------- game start ------------
-
+    logo = {94: "logo_primeira", 135: "logo_serie_a"}
     radar_player = st.selectbox(f"Select a {team}'s player:", wy_players)
     player_t = larga[larga.Player == radar_player]
     minutes_played = mp[mp.Player == radar_player]["Minutes played"].to_list()[0]
@@ -221,7 +221,7 @@ with player:
     )
     fig.add_layout_image(
         dict(
-            source="https://raw.githubusercontent.com/niesfutbol/statified/develop/static/logo_serie_a.png",
+            source=Image.open(f"static/{logo[league_id_from_name[league_name]]}.png"),
             xref="paper",
             yref="paper",
             x=0.9,
