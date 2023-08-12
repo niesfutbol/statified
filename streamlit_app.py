@@ -61,42 +61,6 @@ for x, y, id_t in zip(weighted.weighted_attack, weighted.weighted_deffense, weig
     )
     weight_plot.layout.xaxis.fixedrange = True
     weight_plot.layout.yaxis.fixedrange = True
-# -------- plot league indices --------
-dropdown = alt.binding_select(
-    options=["build_up_disruption", "ppda", "tilt"], name="Pressure indices "
-)
-xcol_param = alt.param(value="tilt", bind=dropdown)
-
-tilt_plot = (
-    alt.Chart(tilt_ppda)
-    .mark_point()
-    .encode(
-        x=alt.X("x:Q").title(""),
-        y="xG:Q",
-        tooltip=["team", "xG", "tilt", "build_up_disruption", "ppda"],
-    )
-    .transform_calculate(x=f"datum[{xcol_param.name}]")
-    .add_params(xcol_param)
-)
-img = (
-    alt.Chart(
-        {
-            "values": [
-                {
-                    "url": "https://raw.githubusercontent.com/niesfutbol/statified/develop/static/logo_nies.png"
-                }
-            ]
-        }
-    )
-    .mark_image(opacity=0.5)
-    .encode(
-        x=alt.value(270),
-        x2=alt.value(300),  # pixels from left
-        y=alt.value(320),
-        y2=alt.value(350),  # pixels from top
-    )
-)
-new_plot = alt.layer(tilt_plot, img)
 # st.set_page_config(layout="wide")
 """
 This is a hierarchical review.
@@ -105,6 +69,7 @@ Once the league is configured, in the second tab, we can see the teams in that l
 Once we choose the team, we can see the members of that team in the last tab.
 """
 
+league_id_from_name = {"Primeira Liga": 94, "Serie A": 135}
 league, team, player = st.tabs(["League", "Team", "Player"])
 
 with league:
@@ -126,11 +91,50 @@ with league:
     You will find the full description in the blog notes [The inclination and pressure for Napoles](https://www.nies.futbol/2023/05/la-inclinacion-y-la-presion-para-el.html)
     and [Pressure indices: PPDA and Build-Up Disruption](https://www.nies.futbol/2023/04/indices-de-presion-ppda-y-build-up.html).
     """
+    league_name = st.selectbox("Select a team:", ["Primeira Liga", "Serie A"])
+    tilt_ppda = pd.read_csv(f"static/xG_build-up_ppda_tilt_{league_id_from_name[league_name]}.csv")
+    # -------- plot league indices --------
+    dropdown = alt.binding_select(
+        options=["build_up_disruption", "ppda", "tilt"], name="Pressure indices "
+    )
+    xcol_param = alt.param(value="tilt", bind=dropdown)
+
+    tilt_plot = (
+        alt.Chart(tilt_ppda)
+        .mark_point()
+        .encode(
+            x=alt.X("x:Q").title(""),
+            y="xG:Q",
+            tooltip=["team", "xG", "tilt", "build_up_disruption", "ppda"],
+        )
+        .transform_calculate(x=f"datum[{xcol_param.name}]")
+        .add_params(xcol_param)
+    )
+    img = (
+        alt.Chart(
+            {
+                "values": [
+                    {
+                        "url": "https://raw.githubusercontent.com/niesfutbol/statified/develop/static/logo_nies.png"
+                    }
+                ]
+            }
+        )
+        .mark_image(opacity=0.5)
+        .encode(
+            x=alt.value(270),
+            x2=alt.value(300),  # pixels from left
+            y=alt.value(320),
+            y2=alt.value(350),  # pixels from top
+        )
+    )
+    new_plot = alt.layer(tilt_plot, img)
     st.altair_chart(new_plot)
     st.plotly_chart(weight_plot, use_container_width=True)
 
     st.subheader("Repositories involved")
     """
+        - The repo to download data about weighted G and xG is [football](https://gitlab.com/nepito/football) (Python)
         - The repo to calculate the pressure indeces is [pressure_index](https://github.com/niesfutbol/pressure_index) (R y Python)
         - The repo to calculate the weighted G and xG is [calculator-trs](https://github.com/nepito/calculator-trs) (R)
     """
