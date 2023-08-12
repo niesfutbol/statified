@@ -1,3 +1,4 @@
+import pandas as pd
 import statified_nies as dt
 
 
@@ -7,3 +8,14 @@ def test_add_offset():
     expected = augend + addend
     obtained = dt.add_offset(augend, addend)
     assert expected == obtained
+
+
+ws_players = pd.read_csv("static/larga_player.csv")
+as_players = pd.read_csv("static/played_minutes.csv")
+
+
+def test_list_of_players_in_ws_and_as():
+    players = dt.list_of_players_in_ws_and_as(ws_players, as_players)
+    expected_n = 307
+    obtained_n = len(players)
+    assert obtained_n == expected_n
