@@ -97,7 +97,7 @@ img = (
     )
 )
 new_plot = alt.layer(tilt_plot, img)
-
+st.set_page_config(layout="wide")
 """
 This is a hierarchical review.
 First, we select the league of our interest.
@@ -127,7 +127,7 @@ with league:
     and [Pressure indices: PPDA and Build-Up Disruption](https://www.nies.futbol/2023/04/indices-de-presion-ppda-y-build-up.html).
     """
     st.altair_chart(new_plot)
-    st.plotly_chart(weight_plot)
+    st.plotly_chart(weight_plot, use_container_width=True)
 
     st.subheader("Repositories involved")
     """
