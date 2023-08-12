@@ -251,7 +251,7 @@ with player:
             xanchor="right",
         )
     )
-    st.plotly_chart(fig)
+    st.plotly_chart(fig, use_container_width=True)
     st.subheader("Repositories involved")
     """
         - The repo to calculate the player's cluster is [cluster_players](https://github.com/niesfutbol/cluster_players) (R)
