@@ -7,8 +7,6 @@ import streamlit as st
 
 larga = pd.read_csv("static/larga_player.csv")
 data = pd.read_csv("static/played_minutes.csv")
-tilt_ppda = pd.read_csv("static/xG_build-up_ppda_tilt_135.csv")
-weighted = pd.read_csv("static/weighted_g_and_xg.csv")
 mp = pd.read_csv("static/minutes_played_23.csv")
 
 
@@ -20,47 +18,6 @@ def list_of_players_in_ws_and_as(longer, played_minutes):
     ]
 
 
-# ---------- plot weight --------------
-min_x = weighted.weighted_deffense.min()
-max_x = weighted.weighted_deffense.max()
-diff = (max_x - min_x) / 5
-weight_plot = (
-    px.scatter(
-        weighted,
-        x="weighted_attack",
-        y="weighted_deffense",
-        labels={
-            "weighted_attack": "Weighted xG and G For",
-            "weighted_deffense": "Weighted xG and G Against",
-        },
-    )
-    .update_layout(yaxis=dict(autorange="reversed"), xaxis_range=[min_x - diff, max_x + diff])
-    .add_layout_image(
-        dict(
-            source=Image.open("static/logo_nies.png"),
-            xref="paper",
-            yref="paper",
-            x=0.7,
-            y=0.2,
-            sizex=0.2,
-            sizey=0.2,
-        )
-    )
-)
-for x, y, id_t in zip(weighted.weighted_attack, weighted.weighted_deffense, weighted.team_id):
-    weight_plot.add_layout_image(
-        x=x,
-        y=y,
-        source=Image.open(f"static/logo_{id_t}.png"),
-        xref="x",
-        yref="y",
-        sizex=0.07,
-        sizey=0.07,
-        xanchor="center",
-        yanchor="middle",
-    )
-    weight_plot.layout.xaxis.fixedrange = True
-    weight_plot.layout.yaxis.fixedrange = True
 # st.set_page_config(layout="wide")
 """
 This is a hierarchical review.
@@ -93,6 +50,7 @@ with league:
     """
     league_name = st.selectbox("Select a team:", ["Primeira Liga", "Serie A"])
     tilt_ppda = pd.read_csv(f"static/xG_build-up_ppda_tilt_{league_id_from_name[league_name]}.csv")
+    weighted = pd.read_csv(f"static/weighted_g_and_xg_{league_id_from_name[league_name]}.csv")
     # -------- plot league indices --------
     dropdown = alt.binding_select(
         options=["build_up_disruption", "ppda", "tilt"], name="Pressure indices "
@@ -128,8 +86,48 @@ with league:
             y2=alt.value(350),  # pixels from top
         )
     )
-    new_plot = alt.layer(tilt_plot, img)
-    st.altair_chart(new_plot)
+    st.altair_chart(tilt_plot)
+    # ---------- plot weight --------------
+    min_x = weighted.weighted_deffense.min()
+    max_x = weighted.weighted_deffense.max()
+    diff = (max_x - min_x) / 5
+    weight_plot = (
+        px.scatter(
+            weighted,
+            x="weighted_attack",
+            y="weighted_deffense",
+            labels={
+                "weighted_attack": "Weighted xG and G For",
+                "weighted_deffense": "Weighted xG and G Against",
+            },
+        )
+        .update_layout(yaxis=dict(autorange="reversed"), xaxis_range=[min_x - diff, max_x + diff])
+        .add_layout_image(
+            dict(
+                source=Image.open("static/logo_nies.png"),
+                xref="paper",
+                yref="paper",
+                x=0.7,
+                y=0.2,
+                sizex=0.2,
+                sizey=0.2,
+            )
+        )
+    )
+    for x, y, id_t in zip(weighted.weighted_attack, weighted.weighted_deffense, weighted.team_id):
+        weight_plot.add_layout_image(
+            x=x,
+            y=y,
+            source=Image.open(f"static/logo_{id_t}.png"),
+            xref="x",
+            yref="y",
+            sizex=0.07,
+            sizey=0.07,
+            xanchor="center",
+            yanchor="middle",
+        )
+        weight_plot.layout.xaxis.fixedrange = True
+        weight_plot.layout.yaxis.fixedrange = True
     st.plotly_chart(weight_plot, use_container_width=True)
 
     st.subheader("Repositories involved")
