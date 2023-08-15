@@ -3,9 +3,12 @@ import pandas as pd
 from PIL import Image
 import plotly.express as px
 import streamlit as st
+import requests
+import json
 
 
-larga = pd.read_csv("static/larga_player.csv")
+conn = requests.get("http://104.248.109.197:6969/v1/percentile")
+larga = pd.DataFrame.from_dict(conn.json())
 mp = pd.read_csv("static/minutes_played_23.csv")
 
 
@@ -257,6 +260,7 @@ with player:
     st.subheader("Repositories involved")
     """
         - The repo to calculate the player's cluster is [cluster_players](https://github.com/niesfutbol/cluster_players) (R)
+        - The API for the player's percentiles is [players_api](http://104.248.109.197:6969/docs#/) (python)
     """
 
 
