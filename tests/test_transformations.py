@@ -10,7 +10,7 @@ def test_add_offset():
     assert expected == obtained
 
 
-ws_players = pd.read_csv("static/larga_player.csv")
+ws_players = pd.read_csv("tests/data/larga_player.csv")
 as_players = pd.read_csv("static/played_minutes_94.csv")
 
 
