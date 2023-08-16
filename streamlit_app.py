@@ -90,8 +90,8 @@ with league:
     )
     st.altair_chart(tilt_plot)
     # ---------- plot weight --------------
-    min_x = weighted.weighted_deffense.min()
-    max_x = weighted.weighted_deffense.max()
+    min_x = weighted.weighted_attack.min()
+    max_x = weighted.weighted_attack.max()
     diff = (max_x - min_x) / 5
     weight_plot = (
         px.scatter(
