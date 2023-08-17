@@ -120,7 +120,7 @@ with league:
         weight_plot.add_layout_image(
             x=x,
             y=y,
-            source=Image.open(f"static/logo_{id_t}.png"),
+            source=Image.open(f"static/logos/logo_{id_t}.png"),
             xref="x",
             yref="y",
             sizex=0.07,
@@ -246,7 +246,7 @@ with player:
         )
     ).add_layout_image(
         dict(
-            source=Image.open(f"static/logo_{team_id}.png"),
+            source=Image.open(f"static/logos/logo_{team_id}.png"),
             xref="paper",
             yref="paper",
             x=0.9,
