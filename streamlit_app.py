@@ -75,7 +75,7 @@ with league:
             {
                 "values": [
                     {
-                        "url": "https://raw.githubusercontent.com/niesfutbol/statified/develop/static/logo_nies.png"
+                        "url": "https://raw.githubusercontent.com/niesfutbol/statified/develop/static/logos/logo_nies.png"
                     }
                 ]
             }
@@ -106,7 +106,7 @@ with league:
         .update_layout(yaxis=dict(autorange="reversed"), xaxis_range=[min_x - diff, max_x + diff])
         .add_layout_image(
             dict(
-                source=Image.open("static/logo_nies.png"),
+                source=Image.open("static/logos/logo_nies.png"),
                 xref="paper",
                 yref="paper",
                 x=0.7,
@@ -224,7 +224,7 @@ with player:
     )
     fig.add_layout_image(
         dict(
-            source=Image.open(f"static/{logo[league_id_from_name[league_name]]}.png"),
+            source=Image.open(f"static/logos/{logo[league_id_from_name[league_name]]}.png"),
             xref="paper",
             yref="paper",
             x=0.9,
@@ -236,7 +236,7 @@ with player:
         )
     ).add_layout_image(
         dict(
-            source=Image.open("static/logo_nies.png"),
+            source=Image.open("static/logos/logo_nies.png"),
             xref="paper",
             yref="paper",
             x=0.05,
