@@ -21,7 +21,6 @@ def list_of_players_in_ws_and_as(longer, played_minutes):
     ]
 
 
-# st.set_page_config(layout="wide")
 """
 This is a hierarchical review.
 First, we select the league of our interest.
@@ -160,7 +159,7 @@ with team:
     played_minutes = data[data.team == team]
     wy_players = list_of_players_in_ws_and_as(larga, played_minutes)
     # Crear el gráfico de Altair
-    hm_consistent = hrp.make_heat_map_of_sonsistent(data, team, color)
+    hm_consistent = hrp.make_heat_map_of_consistent(data, team, color)
     st.altair_chart(hm_consistent)
 
     st.subheader("Repositories involved")
@@ -184,59 +183,17 @@ with player:
     player_t = larga[larga.Player == radar_player]
     minutes_played = mp[mp.Player == radar_player]["Minutes played"].to_list()[0]
     team_id = weighted[weighted.names == team]["team_id"].to_list()[0]
-    fig = px.bar_polar(
-        player_t,
-        r="deciles",
-        theta="variable",
-        color="type_variable",
-        title=f"{radar_player}, {team} ({minutes_played} minutes played)",
+    scotland_logo = f"{logo[league_id_from_name[league_name]]}"
+    ac_milan_logo = f"logo_{team_id}"
+    pizza_plot = hrp.make_bar_plot_player(
+        larga,
+        radar_player,
+        minutes_played,
+        team,
+        league_logo=scotland_logo,
+        team_logo=ac_milan_logo,
     )
-
-    fig.update_traces(showlegend=True)
-    fig.update_polars(radialaxis_showticklabels=True)
-    fig.update_layout(
-        legend_title_text="Game phase",
-        polar_radialaxis_ticksuffix="",
-        polar_angularaxis_rotation=90,
-        polar_angularaxis_direction="clockwise",
-        polar_radialaxis_dtick=10,
-        polar_hole=0.10,
-    )
-    fig.add_layout_image(
-        dict(
-            source=Image.open(f"static/logos/{logo[league_id_from_name[league_name]]}.png"),
-            xref="paper",
-            yref="paper",
-            x=0.9,
-            y=1.05,
-            sizex=0.2,
-            sizey=0.2,
-            xanchor="right",
-            yanchor="bottom",
-        )
-    ).add_layout_image(
-        dict(
-            source=Image.open("static/logos/logo_nies.png"),
-            xref="paper",
-            yref="paper",
-            x=0.05,
-            y=0.05,
-            sizex=0.2,
-            sizey=0.2,
-        )
-    ).add_layout_image(
-        dict(
-            source=Image.open(f"static/logos/logo_{team_id}.png"),
-            xref="paper",
-            yref="paper",
-            x=0.9,
-            y=0.1,
-            sizex=0.2,
-            sizey=0.2,
-            xanchor="right",
-        )
-    )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(pizza_plot, use_container_width=True)
     st.subheader("Repositories involved")
     """
         - The repo to calculate the player's cluster is [cluster_players](https://github.com/niesfutbol/cluster_players) (R)
