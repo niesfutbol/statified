@@ -7,9 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.1.2] - 2023-08-16
-
 ### Added
+
+### Fixed
+
+### Changed
+
+- Use module `hierarchical_review_plots`.
+
+### Removed
+
+## [0.1.2] - 2023-08-16
 
 ### Fixed
 
@@ -18,8 +26,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Move logos to directory logos.
-
-### Removed
 
 ## [0.1.1] - 2023-08-14
 
