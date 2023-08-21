@@ -7,12 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.3] - 2023-08-20
+
 ### Added
 
 ### Fixed
 
 ### Changed
 
+- Use module `hierarchical_review_plots`: `make_tilt_ppda_build_up_disruption()`.
 - Use module `hierarchical_review_plots`: `make_weighted()`.
 - Use module `hierarchical_review_plots`: `make_bar_plot_player()`.
 - Use module `hierarchical_review_plots`.
@@ -39,5 +42,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Use API instead of consigned data.
 
+[0.1.3]: https://github.com/niesfutbol/statified/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/niesfutbol/statified/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/niesfutbol/statified/compare/v0.1.0...v0.1.1
