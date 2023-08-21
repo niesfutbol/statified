@@ -54,41 +54,9 @@ with league:
     tilt_ppda = pd.read_csv(f"static/xG_build-up_ppda_tilt_{league_id_from_name[league_name]}.csv")
     weighted = pd.read_csv(f"static/weighted_g_and_xg_{league_id_from_name[league_name]}.csv")
     # -------- plot league indices --------
-    dropdown = alt.binding_select(
-        options=["build_up_disruption", "ppda", "tilt"], name="Pressure indices "
-    )
-    xcol_param = alt.param(value="tilt", bind=dropdown)
-
-    tilt_plot = (
-        alt.Chart(tilt_ppda)
-        .mark_point()
-        .encode(
-            x=alt.X("x:Q").title(""),
-            y="xG:Q",
-            tooltip=["team", "xG", "tilt", "build_up_disruption", "ppda"],
-        )
-        .transform_calculate(x=f"datum[{xcol_param.name}]")
-        .add_params(xcol_param)
-    )
-    img = (
-        alt.Chart(
-            {
-                "values": [
-                    {
-                        "url": "https://raw.githubusercontent.com/niesfutbol/statified/develop/static/logos/logo_nies.png"
-                    }
-                ]
-            }
-        )
-        .mark_image(opacity=0.5)
-        .encode(
-            x=alt.value(270),
-            x2=alt.value(300),  # pixels from left
-            y=alt.value(320),
-            y2=alt.value(350),  # pixels from top
-        )
-    )
-    st.altair_chart(tilt_plot)
+    options = hrp.select_pression_index()
+    ppda_plot = hrp.make_tilt_ppda_build_up_disruption(tilt_ppda, options)
+    st.altair_chart(ppda_plot)
     # ---------- plot weight --------------
     weight_plot = hrp.make_weighted(weighted)
     st.plotly_chart(weight_plot, use_container_width=True)
