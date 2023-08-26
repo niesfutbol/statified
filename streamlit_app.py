@@ -83,10 +83,14 @@ with team:
     teams = data.team.unique().tolist()
     teams.sort()
     colours = {t: c for t, c in zip(weighted.names, weighted.colours)}
+    team_id_from_name = {name: id_t for id_t, name in zip(weighted.team_id, weighted.names)}
     team = st.selectbox("Select a team:", teams)
+    team_id = weighted[weighted.names == team]["team_id"].to_list()[0]
     color = colours[team]
     played_minutes = data[data.team == team]
     wy_players = list_of_players_in_ws_and_as(larga, played_minutes)
+    # Soccerbar
+    st.image(f"static/matches/matches_{team_id}.png")
     # Crear el gráfico de Altair
     hm_consistent = hrp.make_heat_map_of_consistent(data, team, color)
     st.altair_chart(hm_consistent)
