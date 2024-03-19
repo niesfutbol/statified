@@ -20,6 +20,7 @@ def list_of_players_in_ws_and_as(longer, played_minutes):
         if jugador in played_minutes.player.to_list()
     ]
 
+
 PAGE_TITLE = "Hierarchical Review"
 PAGE_ICON = "🧩"
 st.set_page_config(page_title=PAGE_TITLE, page_icon=PAGE_ICON)
