@@ -59,8 +59,8 @@ with league:
     weighted = pd.read_csv(f"static/weighted_g_and_xg_{league_id_from_name[league_name]}.csv")
     # -------- plot league indices --------
     options = hrp.select_pression_index()
-    ppda_plot = hrp.make_tilt_ppda_build_up_disruption(tilt_ppda, options)
-    st.altair_chart(ppda_plot)
+    #ppda_plot = hrp.make_tilt_ppda_build_up_disruption(tilt_ppda, options)
+    #st.altair_chart(ppda_plot)
     # ---------- plot weight --------------
     weight_plot = hrp.make_weighted(weighted)
     st.plotly_chart(weight_plot, use_container_width=True)
